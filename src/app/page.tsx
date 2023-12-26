@@ -1,12 +1,12 @@
 "use client";
 
-import Sidebar from "@/components/Menubar/Sidebar";
+import MenuBar from "@/components/Menubar/Menu/Index";
+import Sidebar from "@/components/Menubar/Sidebar/Sidebar";
 
 export default function Home() {
   return (
     <main>
-      {/* sidebar code here  */}
-      <Sidebar />
+      <MenuBar />
     </main>
   );
 }
