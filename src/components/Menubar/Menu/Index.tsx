@@ -37,9 +37,9 @@ const MenuBar = () => {
               setSubmenuItems={setSubmenuItems}
               submenuItems={submenuItems}
             />
-            {item?.name == submenuItems && (
+            {/* {item?.name == submenuItems && (
               <Submenu submenu={submenu} setSubmenu={setSubmenu} item={item} />
-            )}
+            )} */}
           </div>
         ))}
         <div className=" bg-black     ">

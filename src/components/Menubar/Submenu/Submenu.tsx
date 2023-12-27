@@ -2,7 +2,6 @@ import React from "react";
 import { CloseSubmenuIcon, RightLeftArrow } from "../Icons/Index";
 
 const Submenu = ({ submenu, setSubmenu, item }: any) => {
-  console.log(item?.label, "submenu item is here ");
   return (
     <div>
       <div className="sidebar_menu1 p-4   bg-primary w-[200px] h-full duration-300 transition-all ease-linear overflow-hidden">

@@ -42,7 +42,7 @@
 
 /* after adding active class */
 .wrapper.active .sidebar_menu {
-  width: 100px;
+  width: 85px;
   height: 100%;
 }
 .wrapper.new .sidebar_menu1 {
@@ -64,10 +64,20 @@
   width: calc(100% - 100px);
   margin-left: 100px;
 }
+@media screen and (max-width: 768px) {
+  .wrapper .sidebar_menu {
+    width: 85px;
+    height: 100%;
+  }
+  /* .wrapper.active .sidebar_menu {
+    width: 280px;
+    height: 100%;
+  } */
+}
 
 .sidebar_menu {
   height: 100%;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   /* overflow-x: hidden; */
 }
 
@@ -75,7 +85,7 @@
 
 /* body scroll bar custom design  */
 ::-webkit-scrollbar {
-  width: 4px !important;
+  width: 0px !important;
   /* background-color: #00aeff34 !important; */
   background: gray !important;
   border: 0px transparent;
@@ -104,7 +114,7 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   /* background: red !important; */
-  width: 4px !important;
+  width: 0px !important;
   transform: scale(1.2) !important;
 }
 

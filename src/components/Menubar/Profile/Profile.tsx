@@ -1,6 +1,6 @@
 import Image from "next/image";
-import React from "react";
-import { ArrowDown } from "../Menubar/Icons/Index";
+import React, { useState } from "react";
+import { ArrowDown } from "../Icons/Index";
 import { RxAvatar } from "react-icons/rx";
 const data = [
   {
@@ -67,24 +67,22 @@ const availAbleItem = [
   { name: "Do not disturb", color: "#DC6803" },
   { name: "Appear offline", color: "#808080" },
 ];
-const Profile = ({ menuItems, setMenuItems }: any) => {
+const Profile = ({ sidebarMenuIcon, handleClick }: any) => {
   return (
     <div className=" relative">
-      <button
-        className="relative     "
-        onClick={() => setMenuItems(!menuItems)}>
+      <button className="relative     " onClick={() => handleClick("profile")}>
         <Image
           src="/assets/Avatar.png"
           width={1000}
           height={1000}
-          className="w-10 h-10"
+          className="w-10 h-10 rounded-full border-2 border-[#cccccc]"
           alt=""
         />
-        <span className="bg-[#28C76F] h-1 w-1 p-1 block rounded-full border  absolute right-0 bottom-0 "></span>
+        <span className="bg-[#28C76F] h-1 w-1 p-1 block rounded-full border  absolute right-1 bottom-1 "></span>
       </button>
       <div
         className={`${
-          menuItems
+          sidebarMenuIcon?.profile
             ? "block   min-h-min  borderss"
             : " h-0 text-transparent  overflow-hidden  "
         } bg-[#1A1A1A] absolute -right-6 top-[54px] rounded-md duration-300 ease-in-out transition-all  w-60  divide-y `}>
