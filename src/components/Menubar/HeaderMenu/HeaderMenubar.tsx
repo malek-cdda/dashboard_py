@@ -14,44 +14,47 @@ const HeaderMenubar = ({ isActive, setMenuItems, menuItems }: any) => {
     notification: false,
     accessblity: false,
   });
+  // handle menuicon click here
   const handleClick = (item: any) => {
-    setSidebarMenuIcon({
-      ...sidebarMenuIcon,
-      [item]: sidebarMenuIcon[item] == true ? false : true,
-    });
-    for (let key in sidebarMenuIcon) {
-      if (key == item) {
-        continue;
+    const menuSettingUpdate = { ...sidebarMenuIcon };
+    menuSettingUpdate[item] = !menuSettingUpdate[item];
+    for (let key in menuSettingUpdate) {
+      if (key !== item) {
+        menuSettingUpdate[key] = false;
       }
-      sidebarMenuIcon[key] = false;
     }
-    console.log(sidebarMenuIcon[item]);
+    setSidebarMenuIcon(menuSettingUpdate);
   };
 
   return (
     <div className="  w-full h-[65px] flex fixed top-0 right-0  bg-primary text-white ">
       <div
         className={` ${
-          isActive ? "ml-20" : "ml-72"
-        } text-white  px-10 bg-transparent w-full flex justify-between items-center duration-300 ease-in-out transition-all `}>
+          isActive ? "md:ml-20 ml-72 " : "md:ml-72 ml-20"
+        } text-white  px-10   bg-transparent w-full flex justify-between items-center duration-300 ease-in-out transition-all `}>
         <div className="">
           <span className="text-2xl">Dashboard</span>
         </div>
 
         <div className="flex space-x-3">
+          {/* language changing action here  */}
           <Language
             sidebarMenuIcon={sidebarMenuIcon}
             handleClick={handleClick}
           />
+          {/* accessibility action here  */}
           <Accessibility
             sidebarMenuIcon={sidebarMenuIcon}
             handleClick={handleClick}
           />
+          {/* darkmode and lightmode action here  */}
           <DarkmodeLightmode />
+          {/* notification action here  */}
           <Notification
             sidebarMenuIcon={sidebarMenuIcon}
             handleClick={handleClick}
           />
+          {/* profile action here  */}
           <Profile
             sidebarMenuIcon={sidebarMenuIcon}
             handleClick={handleClick}

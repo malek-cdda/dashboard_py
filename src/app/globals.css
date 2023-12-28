@@ -7,23 +7,9 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
-.main_body,
-.container {
-  background-color: red !important;
+body {
+  background-color: #333;
 }
-.main_body .sidebar_menu ul li a.active {
-  background: #757575;
-  color: #fff;
-}
-
-.main_body .sidebar_menu .inner_hamburger,
-.main_body .sidebar_menu .hamburger .arrow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .main_body .sidebar_menu .inner_hamburger {
   width: 40px;
   border-radius: 50%;
@@ -51,12 +37,12 @@
 }
 .wrapper.active .sidebar_menu1 {
   position: fixed;
-  left: 100px;
+  left: 85px;
 }
 
 .wrapper .sidebar_menu1 {
   position: fixed;
-  left: 301px;
+  left: 300px;
   top: 60px;
 }
 
@@ -69,10 +55,10 @@
     width: 85px;
     height: 100%;
   }
-  /* .wrapper.active .sidebar_menu {
-    width: 280px;
+  .wrapper.active .sidebar_menu {
+    width: 300px;
     height: 100%;
-  } */
+  }
 }
 
 .sidebar_menu {
@@ -85,7 +71,7 @@
 
 /* body scroll bar custom design  */
 ::-webkit-scrollbar {
-  width: 0px !important;
+  width: 4px !important;
   /* background-color: #00aeff34 !important; */
   background: gray !important;
   border: 0px transparent;
@@ -100,21 +86,14 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    #2b3990 0%,
-    #1c75bc 25%,
-    #27aae1 50%,
-    #00a79d 75%,
-    #00a79d 100%
-  ) !important;
+  background: #ccc !important;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   /* background: red !important; */
-  width: 0px !important;
+  width: 4px !important;
   transform: scale(1.2) !important;
 }
 

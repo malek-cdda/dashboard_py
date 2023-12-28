@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowDown, RightLeftArrow } from "../Icons/Index";
 import Link from "next/link";
 import { MdDashboard } from "react-icons/md";
@@ -9,65 +9,42 @@ const Sidebar = ({
   setSubmenuItems,
   submenuItems,
 }: any) => {
-  console.log(item);
-  console.log(submenuItems);
+  let [sideMenuSystem, setSideMenuSystem] = useState(false);
+  useEffect(() => {
+    // show sideMenuSystem menu when it sidebar menu is small
+    window.matchMedia("(max-width: 968px)").matches
+      ? isActive
+        ? setSideMenuSystem(false)
+        : setSideMenuSystem(true)
+      : isActive
+      ? setSideMenuSystem(true)
+      : setSideMenuSystem(false);
+    // if (window.matchMedia("(max-width: 768px)").matches) {
+    //   isActive ? setSideMenuSystem(false) : setSideMenuSystem(true);
+    // } else {
+    //   isActive ? setSideMenuSystem(true) : setSideMenuSystem(false);
+    // }
+  }, [isActive]);
+  console.log(sideMenuSystem);
   return (
     <div>
       <div className="sidebar_menu p-4 fixed top-0 left-0 bg-primary w-[300px] h-full duration-300 transition-all ease-linear  ">
         <div className="inner__sidebar_menu relative">
-          <div className="logo   bg-primary border-r-[1px] border-b-[1px] border-primary">
-            <Link
-              href="#"
-              className={`text-white text-center   pt-5 ${
-                isActive && "hidden"
-              }   `}>
-              Pyreactor
-            </Link>
-            <Link
-              href="#"
-              className={`text-white text-center   pt-5 ${
-                !isActive && "hidden"
-              }  `}>
-              <PyreactorIcon />
-            </Link>
-          </div>
+          {/* sidemenu header code here  */}
+          <MenuItemHeader sideMenuSystem={sideMenuSystem} />
           <span
             className={`text-sm font-normal text-secondary ${
-              isActive && "hidden"
+              sideMenuSystem && "hidden"
             } `}>
             Main menu
           </span>
-          <ul className=" menu-items relative overflow-y-scroll overflow-hidden ">
-            {item.map((listItem: any, index: any) => (
-              <li
-                key={index}
-                onClick={() => {
-                  setSubmenuItems(listItem?.name);
-                }}>
-                <a
-                  href="#"
-                  className={`text-secondary text-sm font-medium whitespace-nowrap border border-primary py-3 px-0  ${
-                    submenuItems == listItem.name
-                      ? " bg-primaryLite  border-white"
-                      : ""
-                  } flex items-center justify-between hover: rounded-[6px]  hover:border hover:bg-primaryLite hover:border-white`}>
-                  <div className="flex items-center">
-                    <span className="icon inline-block px-4 ">
-                      <RightLeftArrow />
-                    </span>
-                    <span className="list inline-block">
-                      {" "}
-                      {console.log(submenuItems == listItem.name)}
-                      {listItem?.name}{" "}
-                    </span>
-                  </div>
-                  <span className="icon inline-block px-4 ">
-                    <ArrowDown />
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
+          {/* menu items code here  */}
+          <SideMenuItem
+            item={item}
+            sideMenuSystem={sideMenuSystem}
+            setSubmenuItems={setSubmenuItems}
+            submenuItems={submenuItems}
+          />
           {/* hamburger button section  */}
 
           <div
@@ -86,7 +63,67 @@ const Sidebar = ({
 };
 
 export default Sidebar;
-
+// header of menubar
+const MenuItemHeader = ({ sideMenuSystem }: any) => {
+  return (
+    <div className="logo   bg-primary border-r-[1px] border-b-[1px] border-primary">
+      {/* menut item header code  */}
+      <Link
+        href="#"
+        className={`text-white text-center   pt-5 ${
+          sideMenuSystem && "hidden"
+        }   `}>
+        Pyreactor
+      </Link>
+      <Link
+        href="#"
+        className={`text-white text-center   pt-5 ${
+          !sideMenuSystem && "hidden"
+        }  `}>
+        <PyreactorIcon />
+      </Link>
+    </div>
+  );
+};
+// SIDE MENU ITEM CODE HERE
+const SideMenuItem = ({
+  item,
+  sideMenuSystem,
+  setSubmenuItems,
+  submenuItems,
+}: any) => {
+  return (
+    <ul className=" menu-items relative overflow-y-auto overflow-hidden px-1">
+      {item.map((listItem: any, index: any) => (
+        <li
+          title={sideMenuSystem && listItem?.name}
+          key={index}
+          onClick={() => {
+            setSubmenuItems(listItem?.name);
+          }}>
+          <a
+            href="#"
+            className={`text-secondary text-sm font-medium whitespace-nowrap border border-primary py-3 px-0  ${
+              submenuItems == listItem.name
+                ? " bg-[#333]  border-[#5c5c5c]"
+                : ""
+            } flex items-center justify-between hover: rounded-[6px]  hover:border hover:bg-[#333] hover:border-white my-1`}>
+            <div className="flex items-center">
+              <span className="icon inline-block px-4 ">
+                <RightLeftArrow />
+              </span>
+              <span className="list inline-block"> {listItem?.name} </span>
+            </div>
+            <span className="icon inline-block px-4 ">
+              <ArrowDown />
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+};
+// HEADER small device icon
 const PyreactorIcon = () => {
   return (
     <svg

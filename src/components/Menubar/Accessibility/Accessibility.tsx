@@ -100,12 +100,27 @@ const AccessibilityData = ({ data }: any) => {
 };
 const AccessibilityMenutItem = ({ item, handleClick }: any) => {
   return (
-    <div className="flex justify-between py-3 px-5">
+    <div className="flex justify-between py-4 px-5 relative">
       <div className="flex space-x-1">
         <span>
           <ZoomIcon />
         </span>
-        <span>{item.name}</span>
+        <div className="text-base leading-5 ">
+          <span>{item.name}</span>
+          {item.name == "Color" && (
+            <div className="flex  justify-around   w-full absolute left-0 py-[2px] ">
+              <div className="w-1/2 flex space-x-2 items-center pl-20">
+                <div className="w-3 h-3 bg-[#F2F2F2] rounded-full border"></div>
+                <div className="w-3 h-3 bg-[#54c59a] rounded-full border"></div>
+                <div className="w-3 h-3 bg-[#3e3bee] rounded-full border"></div>
+                <div className="w-3 h-3 bg-[#ce4343] rounded-full border"></div>
+              </div>
+              <div className="w-1/2 flex pl-36">
+                <EditIcon />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
       <div>
         {item.type == "zoom_font" && (
@@ -139,6 +154,38 @@ const AccessibilityMenutItem = ({ item, handleClick }: any) => {
         )}
       </div>
     </div>
+  );
+};
+const EditIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none">
+      <path
+        d="M7.73499 2.09996L2.94583 7.16913C2.76499 7.36163 2.58999 7.7408 2.55499 8.0033L2.33916 9.8933C2.26333 10.5758 2.75333 11.0425 3.42999 10.9258L5.30833 10.605C5.57083 10.5583 5.93833 10.3658 6.11916 10.1675L10.9083 5.0983C11.7367 4.2233 12.11 3.2258 10.8208 2.00663C9.53749 0.79913 8.56333 1.22496 7.73499 2.09996Z"
+        stroke="#F2F2F2"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M6.93582 2.9458C7.18665 4.5558 8.49332 5.78663 10.115 5.94997"
+        stroke="#F2F2F2"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M1.75 12.8334H12.25"
+        stroke="#F2F2F2"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
   );
 };
 const PlusIcon = () => {
