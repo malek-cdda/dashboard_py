@@ -7,28 +7,19 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 }
-body {
+/* body {
   background-color: #333;
+} */
+.light {
+  background-color: white;
 }
-.main_body .sidebar_menu .inner_hamburger {
-  width: 40px;
-  border-radius: 50%;
-  height: 40px;
-  background: #3421c0;
-}
-
-.main_body .sidebar_menu .hamburger .arrow {
-  color: #fff;
-  font-size: 20px;
-}
-
-.main_body .sidebar_menu .hamburger .fa-long-arrow-alt-right {
-  display: none;
+.dark {
+  background-color: #333;
 }
 
 /* after adding active class */
 .wrapper.active .sidebar_menu {
-  width: 85px;
+  width: 83px;
   height: 100%;
 }
 .wrapper.new .sidebar_menu1 {
@@ -63,8 +54,6 @@ body {
 
 .sidebar_menu {
   height: 100%;
-  /* overflow-y: scroll; */
-  /* overflow-x: hidden; */
 }
 
 /* scrollbar design code  */
@@ -97,7 +86,7 @@ body {
   transform: scale(1.2) !important;
 }
 
-/* border design  */
+/* border design for menubar icon */
 
 .borderss:after {
   position: absolute;

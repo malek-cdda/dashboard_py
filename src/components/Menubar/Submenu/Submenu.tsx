@@ -1,5 +1,7 @@
 import React from "react";
-import { CloseSubmenuIcon, RightLeftArrow } from "../Icons/Index";
+
+import { HiOutlineArrowsRightLeft } from "react-icons/hi2";
+import { IoMdClose } from "react-icons/io";
 
 const Submenu = ({ submenu, setSubmenu, item }: any) => {
   return (
@@ -15,7 +17,7 @@ const Submenu = ({ submenu, setSubmenu, item }: any) => {
                 <div className="flex items-center">
                   <span
                     className={` inline-block   ${submenu ? "px-0" : "px-4"}`}>
-                    <RightLeftArrow />
+                    <HiOutlineArrowsRightLeft />
                   </span>
                   <span className="list inline-block"> {itemList?.name}</span>
                 </div>
@@ -30,7 +32,7 @@ const Submenu = ({ submenu, setSubmenu, item }: any) => {
           className="absolute top-1/2 -right-4 flex items-center justify-center bg-primary z-50 cursor-pointer p-4   w-4 h-4 py-4 px-1 rounded-e-md ">
           <div className="flex rounded-full ">
             <span className=" ">
-              <CloseSubmenuIcon />
+              <IoMdClose />
             </span>
           </div>
         </div>

@@ -1,6 +1,7 @@
 export const data = [
   {
     name: "home",
+    icon: "FaHome",
     label: [
       {
         name: "home-1",
@@ -18,6 +19,7 @@ export const data = [
   },
   {
     name: "personal",
+    icon: "FaHome",
     label: [
       {
         name: "profile",
@@ -35,6 +37,7 @@ export const data = [
   },
   {
     name: "team",
+    icon: "FaHome",
     label: [
       {
         name: "Team",
@@ -48,6 +51,7 @@ export const data = [
   },
   {
     name: "Support",
+    icon: "FaHome",
     label: [
       {
         name: "profile",

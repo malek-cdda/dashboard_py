@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import CustomProvider from "../redux/Provider";
+import MenuBar from "@/components/Menubar/Menu/Index";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={outfit.className}>
-        <CustomProvider>{children} </CustomProvider>
+        <CustomProvider>
+          <MenuBar>{children} </MenuBar>
+        </CustomProvider>
       </body>
     </html>
   );

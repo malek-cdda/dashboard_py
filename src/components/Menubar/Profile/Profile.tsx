@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
-import { ArrowDown } from "../Icons/Index";
 import { RxAvatar } from "react-icons/rx";
+import { FaChevronRight } from "react-icons/fa";
 const data = [
   {
     name: "personal",
@@ -70,12 +70,14 @@ const availAbleItem = [
 const Profile = ({ sidebarMenuIcon, handleClick }: any) => {
   return (
     <div className=" relative">
-      <button className="relative     " onClick={() => handleClick("profile")}>
+      <button
+        className="relative w-10 h-10  bg-[#5f5f5f33] p-2 rounded-full   "
+        onClick={() => handleClick("profile")}>
         <Image
           src="/assets/Avatar.png"
           width={1000}
           height={1000}
-          className="w-10 h-10 rounded-full border-2 border-[#cccccc]"
+          className="w-6 h-6 "
           alt=""
         />
         <span className="bg-[#28C76F] h-1 w-1 p-1 block rounded-full border  absolute right-1 bottom-1 "></span>
@@ -106,7 +108,7 @@ const Profile = ({ sidebarMenuIcon, handleClick }: any) => {
               </div>
               <span className="flex">
                 {" "}
-                <ArrowDown />
+                <FaChevronRight />
               </span>
               <div className="  absolute  right-0 top-6 bg-[#4D4D4D] w-full hidden group-hover:flex  px-1 capitalize py-2 rounded-md  ">
                 <ul className="space-y-2">

@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+
 import { useEffect } from "react";
 
 export default function Drugable() {
@@ -37,16 +37,6 @@ export default function Drugable() {
         pos2 = pos4 - e.clientY;
         pos3 = e.clientX;
         pos4 = e.clientY;
-        // set the element's new position:
-        var position = drugableItemDiv.getBoundingClientRect();
-
-        var x = position.left;
-        var y = position.top;
-        var x1 = position.right;
-        var y1 = position.bottom;
-        const clientHeight = drugableItemDiv.clientHeight;
-        console.log(window.innerHeight - y, clientHeight);
-        // console.log(x, y, x1, y1);
         // console.log(pos4, drugableItemDiv.clientHeight);
         if (
           pos4 > drugableItemDiv.clientHeight - 8 &&
@@ -73,6 +63,7 @@ export default function Drugable() {
         className="text-black p-5 absolute bg-red-400 cursor-move">
         <p>move me any where in the screen viewport</p>
       </div>
+      <div id="magnifier"></div>
     </div>
   );
 }
