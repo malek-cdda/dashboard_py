@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { RxAvatar } from "react-icons/rx";
 
 import { LiaLanguageSolid } from "react-icons/lia";
-import { IoCheckmarkDone } from "react-icons/io5";
+
 const data = [
   {
     name: "America",
@@ -35,6 +35,7 @@ const availAbleItem = [
   { name: "Do not disturb", color: "#DC6803" },
   { name: "Appear offline", color: "#808080" },
 ];
+
 const Language = ({ sidebarMenuIcon, handleClick }: any) => {
   const [language, setLanguage] = useState(false);
   return (
@@ -47,11 +48,11 @@ const Language = ({ sidebarMenuIcon, handleClick }: any) => {
       <div
         className={`${
           sidebarMenuIcon?.language
-            ? "block   min-h-min  borderss"
+            ? "block     borderss h-[300px] "
             : " h-0 text-transparent  overflow-hidden  "
-        } bg-[#1A1A1A] absolute -right-6 top-[54px] rounded-md duration-300 ease-in-out transition-all  w-80  divide-y  h-[300px] text-white  `}>
+        } bg-[#1A1A1A] absolute -right-6 top-[54px] rounded-md   w-80  divide-y   `}>
         <div className=" space-x-2 py-3  px-5 justify-between items-center">
-          <span className="text-lg">Select your language</span>
+          <span className="text-white">Select your language</span>
         </div>
 
         <LanguageData data={data} />
@@ -66,7 +67,7 @@ const LanguageData = ({ data }: any) => {
   return (
     <div
       className={` ${
-        data.length > 6 ? " overflow-y-auto  h-[250px] " : "h-auto"
+        data.length > 6 ? "overflow-y-auto h-[250px] " : "h-auto"
       }  py-3  px-5  `}>
       {data.map((item: any, index: any) => (
         <div key={index} className="flex justify-between py-3 space-x-2">
@@ -78,11 +79,16 @@ const LanguageData = ({ data }: any) => {
               alt=""
               className="w-7 h-7 "
             />
-            <span className="text-base font-medium leading-5 ">English</span>
+            <span className="text-base font-medium leading-5 text-white">
+              English
+            </span>
           </div>
           {index == 0 && (
             <div>
-              <input className="" type="checkbox" defaultChecked />
+              <input
+                type="checkbox"
+                className="w-5 h-5 rounded-full text-green-500 focus:ring-transparent border-green-500 border-[2px] cursor-pointer"
+              />
             </div>
           )}
         </div>

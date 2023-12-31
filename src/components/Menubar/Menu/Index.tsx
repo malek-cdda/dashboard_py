@@ -55,7 +55,8 @@ const ContainerArea = ({ isActive, children }: any) => {
       className={` ${
         isActive ? "md:ml-24 ml-80 " : "md:ml-80 ml-24"
       }   duration-300 ease-in-out transition-all mt-16 bg-black text-white `}>
-      {/* <Drugable /> */}
+      <Drugable />
+
       {children}
     </div>
   );

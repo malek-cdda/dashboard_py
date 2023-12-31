@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-
+import { FaHome } from "react-icons/fa";
 export default function Drugable() {
   useEffect(() => {
     dragElement(document.getElementById("drugdiv"));
@@ -37,14 +37,19 @@ export default function Drugable() {
         pos2 = pos4 - e.clientY;
         pos3 = e.clientX;
         pos4 = e.clientY;
+        console.log(window.innerHeight, window.innerWidth);
         // console.log(pos4, drugableItemDiv.clientHeight);
+        // console.log(Number(drugableItemDiv.style.top.split("px")[0]));
+        let newNumber = Number(drugableItemDiv.style.top.split("px")[0]);
+        console.log(newNumber);
         if (
           pos4 > drugableItemDiv.clientHeight - 8 &&
           window.innerHeight - 50 >= pos4 &&
           pos3 > drugableItemDiv.clientWidth - 128 &&
           window.innerWidth - 150 >= pos3
+          // newNumber >= 0
         ) {
-          console.log(pos4);
+          console.log(Number(drugableItemDiv.style.top.split("px")[0]));
           drugableItemDiv.style.top = drugableItemDiv.offsetTop - pos2 + "px";
           drugableItemDiv.style.left = drugableItemDiv.offsetLeft - pos1 + "px";
         }
@@ -56,12 +61,15 @@ export default function Drugable() {
       }
     }
   }, []);
+  const iconString = <FaHome />;
   return (
     <div>
       <div
         id="drugdiv"
         className="text-black p-5 absolute bg-red-400 cursor-move">
         <p>move me any where in the screen viewport</p>
+        <div className="text-black bg-red-900" />
+        <p>{iconString}</p>
       </div>
       <div id="magnifier"></div>
     </div>
