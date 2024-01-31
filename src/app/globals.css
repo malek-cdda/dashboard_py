@@ -84,11 +84,12 @@
   /* background: red !important; */
   width: 4px !important;
   transform: scale(1.2) !important;
+  background-color: rgb(235, 11, 11);
 }
 
 /* border design for menubar icon */
 
-.borderss:after {
+.iconBorders:after {
   position: absolute;
   content: "";
   top: -9px;

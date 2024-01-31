@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Profile from "@/components/Menubar/Profile/Profile";
 import Notification from "../Notification/Notification";
@@ -27,7 +27,9 @@ const HeaderMenubar = ({ isActive, setMenuItems, menuItems }: any) => {
   };
 
   return (
-    <div className="  w-full h-[74px] flex fixed top-0 right-0  bg-primary text-white ">
+    <div
+      className="  w-full h-[74px] flex fixed top-0 right-0  bg-primary text-white "
+      id="offMenuitem">
       <div
         className={` ${
           isActive ? "md:ml-20 ml-72 " : "md:ml-72 ml-20"

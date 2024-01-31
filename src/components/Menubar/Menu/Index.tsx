@@ -4,7 +4,7 @@ import React, { lazy, useEffect, useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import HeaderMenubar from "../HeaderMenu/HeaderMenubar";
 import { data } from "../MenuData/data";
-import Drugable from "@/components/Drugable/Drugable";
+
 import { FaFacebookF } from "react-icons/fa6";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 
@@ -26,7 +26,7 @@ const MenuBar = ({ children }: any) => {
         menuItems={menuItems}
       />
       <FooterArea isActive={isActive} />
-      <div className="main_body  ">
+      <div className="main_body my-[76px] ">
         {data.map((item, index) => (
           <div key={index}>
             <Sidebar
@@ -42,7 +42,9 @@ const MenuBar = ({ children }: any) => {
             )} */}
           </div>
         ))}
-        <ContainerArea isActive={isActive}>{children}</ContainerArea>
+        <ContainerArea isActive={isActive} className="py-5 px-5 my-32">
+          {children}
+        </ContainerArea>
       </div>
     </div>
   );
@@ -54,9 +56,7 @@ const ContainerArea = ({ isActive, children }: any) => {
     <div
       className={` ${
         isActive ? "md:ml-24 ml-80 " : "md:ml-80 ml-24"
-      }   duration-300 ease-in-out transition-all mt-16 bg-black text-white `}>
-      <Drugable />
-
+      }   duration-300 ease-in-out transition-all mt-16 bg-black text-white my-20 `}>
       {children}
     </div>
   );

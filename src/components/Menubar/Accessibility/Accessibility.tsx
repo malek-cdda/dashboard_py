@@ -42,14 +42,14 @@ const Accessibility = ({ sidebarMenuIcon, handleClick }: any) => {
   return (
     <div className=" relative">
       <button
-        className="  relative w-10 h-10  bg-[#5f5f5f33] p-2 rounded-full    "
+        className=" rounded-md  shadow-md   after:absolute after:border-[5px]   after:border-transparent  after:border-b-[#696969] after:top-[28px] after:left-[38%]  relative w-10 h-10  bg-[#5f5f5f33] p-2    "
         onClick={() => handleClick("accessblity")}>
         <FaUniversalAccess className="w-6 h-6   border rounded-full" />
       </button>
       <div
         className={`${
           sidebarMenuIcon?.accessblity
-            ? "block   min-h-min  borderss"
+            ? "block   min-h-min  iconBorders"
             : " h-0 text-transparent  overflow-hidden  "
         } bg-[#1A1A1A] absolute -right-6 top-[54px] rounded-md duration-300 ease-in-out transition-all  w-[360px]  divide-y `}>
         <div className="flex space-x-2 py-3  px-5 ">

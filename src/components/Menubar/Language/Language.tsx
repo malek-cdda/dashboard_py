@@ -1,8 +1,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-import { RxAvatar } from "react-icons/rx";
-
 import { LiaLanguageSolid } from "react-icons/lia";
 
 const data = [
@@ -48,7 +46,7 @@ const Language = ({ sidebarMenuIcon, handleClick }: any) => {
       <div
         className={`${
           sidebarMenuIcon?.language
-            ? "block     borderss h-[300px] "
+            ? "block     iconBorders h-[300px] "
             : " h-0 text-transparent  overflow-hidden  "
         } bg-[#1A1A1A] absolute -right-6 top-[54px] rounded-md   w-80  divide-y   `}>
         <div className=" space-x-2 py-3  px-5 justify-between items-center">

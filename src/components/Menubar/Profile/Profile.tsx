@@ -85,7 +85,7 @@ const Profile = ({ sidebarMenuIcon, handleClick }: any) => {
       <div
         className={`${
           sidebarMenuIcon?.profile
-            ? "block   min-h-min  borderss"
+            ? "block   min-h-min  iconBorders"
             : " h-0 text-transparent  overflow-hidden  "
         } bg-[#1A1A1A] absolute -right-6 top-[54px] rounded-md duration-300 ease-in-out transition-all  w-60  divide-y `}>
         <div className="flex space-x-2 py-3  px-5 ">

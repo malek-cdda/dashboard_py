@@ -15,7 +15,6 @@ const Sidebar = ({
   let [sideMenuSystem, setSideMenuSystem] = useState<boolean>(false);
   useEffect(() => {
     // show sideMenuSystem menu when it sidebar menu is small
-
     if (window.matchMedia("(max-width: 768px)").matches) {
       isActive ? setSideMenuSystem(false) : setSideMenuSystem(true);
     } else {
