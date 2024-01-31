@@ -1,3 +1,4 @@
+"use client";
 import TableValidator from "@/components/Table/Index";
 import Layouts from "@/layouts/Layouts";
 import React from "react";

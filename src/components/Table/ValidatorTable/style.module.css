@@ -1,0 +1,61 @@
+.tableDataHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 16px;
+}
+.tableDataHeader_title {
+  font-size: 24px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  line-height: 31px;
+}
+.tableDataHeader_footer_title {
+  font-size: 14px;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  color: #ccc;
+  line-height: 18px;
+}
+.tableDataFooterArea {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+/* input field design here  */
+.tableDataFooterArea label {
+  position: relative;
+  background-color: black;
+}
+.search_icon {
+  top: 12px;
+  left: 14px; /* for left side */
+  /* right: 5px; for right side*/
+  position: absolute;
+  color: #808080;
+}
+
+.tableDataFooterArea #search {
+  background-color: #333333;
+  border: 1px solid #808080;
+  border-radius: 6px;
+  outline: none !important;
+  color: #b4b4b4;
+  padding-left: 42px;
+}
+.tableDataFooterArea input::placeholder {
+  color: #808080;
+}
+/* add button design here  */
+.tableDataFooterArea button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background-color: #1570ef;
+  padding: 9px 12px;
+  border-radius: 6px;
+}
