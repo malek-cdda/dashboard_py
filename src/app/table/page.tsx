@@ -6,7 +6,7 @@ import React from "react";
 const Home = () => {
   return (
     <Layouts>
-      <TableValidator /> {/* Fix the problem */}
+      <TableValidator />
     </Layouts>
   );
 };

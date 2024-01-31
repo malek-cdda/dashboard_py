@@ -16,20 +16,22 @@ const TableData = ({
         <tr>
           <th>
             {" "}
-            <input
-              type="checkbox"
-              checked={
-                toggleProduct.length === state.tableData.data.length
-                  ? true
-                  : false
-              }
-              onChange={() => allProduct("all")}
-            />{" "}
-            <span>{state?.tableData?.tableTitle?.author}</span>
+            <div className={style.author}>
+              <input
+                type="checkbox"
+                checked={
+                  toggleProduct.length === state.tableData.data.length
+                    ? true
+                    : false
+                }
+                onChange={() => allProduct("all")}
+              />{" "}
+              <span>{state?.tableData?.tableTitle?.author}</span>
+            </div>
           </th>
           <th>
             <span>{state?.tableData?.tableTitle?.name} </span>
-            <button onClick={descendingOrder}>Decending</button>
+            <button onClick={descendingOrder}> </button>
           </th>
           <th>{state?.tableData?.tableTitle?.inputs}</th>
           <th>{state?.tableData?.tableTitle?.db}</th>
@@ -70,11 +72,17 @@ const TableData = ({
             </td>
             <td>{data.inputs}</td>
             <td>
-              <span className={style.db}>{data.db}</span>
+              <span className={style.db}>{data.db} </span>
             </td>
-            <td>{data.crud}</td>
-            <td>{data.ws}</td>
-            <td>{data.inMemory}</td>
+            <td>
+              <input type="checkbox" checked={data.crud} />
+            </td>
+            <td>
+              <input type="checkbox" checked={data.ws} />
+            </td>
+            <td>
+              <input type="checkbox" checked={data.inMemory} />
+            </td>
             <td>
               <span className={style.relation}>
                 {data.relation.map((item: any, index: any) => (
@@ -83,9 +91,7 @@ const TableData = ({
               </span>
             </td>
             <td>
-              <span className={style.status}>
-                {data.status ? "Active" : ""}
-              </span>
+              {data.status ? <span className={style.status}> Active</span> : ""}
             </td>
             <td>
               <div className={style.actions}>

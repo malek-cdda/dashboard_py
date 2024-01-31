@@ -17,9 +17,9 @@ const MenuBar = ({ children }: any) => {
   const [submenuItems, setSubmenuItems] = useState("home");
   return (
     <div
-      className={`${
-        isActive ? "active wrapper bg-primary" : "wrapper bg-primary"
-      } ${submenu ? "new" : ""} bg-gray-300`}>
+      className={`${isActive ? "active wrapper  " : "wrapper   "} ${
+        submenu ? "new" : ""
+      }  `}>
       <HeaderMenubar
         isActive={isActive}
         setMenuItems={setMenuItems}
@@ -42,7 +42,7 @@ const MenuBar = ({ children }: any) => {
             )} */}
           </div>
         ))}
-        <ContainerArea isActive={isActive} className="py-5 px-5 my-32">
+        <ContainerArea isActive={isActive} className="  my-32">
           {children}
         </ContainerArea>
       </div>
@@ -56,7 +56,7 @@ const ContainerArea = ({ isActive, children }: any) => {
     <div
       className={` ${
         isActive ? "md:ml-24 ml-80 " : "md:ml-80 ml-24"
-      }   duration-300 ease-in-out transition-all mt-16 bg-black text-white my-20 `}>
+      }   duration-300 ease-in-out transition-all    `}>
       {children}
     </div>
   );

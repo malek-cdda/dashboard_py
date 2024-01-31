@@ -3,9 +3,6 @@
   color: #b3b3b3;
   font-size: 12px;
   font-weight: 400;
-
-  margin: 12px;
-  border-collapse: collapse;
 }
 
 .table th,
@@ -66,4 +63,10 @@
 .actions button .action_icon {
   width: 24px;
   height: 24px;
+}
+.author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
 }
