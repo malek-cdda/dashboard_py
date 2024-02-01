@@ -5,7 +5,7 @@ const initialState = {
     tableTitle: {
       author: {
         label: "Author",
-        show: false,
+        show: true,
       },
       name: {
         label: "Name",
@@ -16,10 +16,10 @@ const initialState = {
         label: "Inputs",
         show: true,
       },
-      db: {
-        label: "DB",
-        show: true,
-      },
+      // db: {
+      //   label: "DB",
+      //   show: true,
+      // },
       crud: {
         label: "Crud",
         show: true,
@@ -30,19 +30,19 @@ const initialState = {
       },
       inMemory: {
         label: "In Memory",
-        show: false,
+        show: true,
       },
       relation: {
         label: "Relation",
-        show: false,
+        show: true,
       },
       status: {
         label: "Status",
-        show: false,
+        show: true,
       },
       action: {
         label: "Action",
-        show: false,
+        show: true,
       },
     },
     data: [
@@ -104,7 +104,7 @@ const initialState = {
       },
       {
         id: 5,
-        author: "Rafik",
+        author: "Rafikss",
         img: "/assets/person.jpg",
         name: "Domain",
         inputs: 3,

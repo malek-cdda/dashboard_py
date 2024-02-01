@@ -21,7 +21,7 @@ const TableValidator = () => {
             title="Ready to Use"
             user="12"
             subTitle="Subtitle"
-            iconColor="#0e9384 "
+            iconColor="#0e9384"
           />
           <WidgetCard
             title="Data Validate With Issues"

@@ -47,6 +47,7 @@ const ValidatorTable = ({ bgColor = "" }: any) => {
     };
     store.dispatch(updateTableData(descendingOrder));
   };
+  const [rowShowValue, setRowShowValue] = useState<number>(4);
   return (
     <div className={style.table} style={{ background: bgColor }}>
       {/* table title div  */}
@@ -75,33 +76,37 @@ const ValidatorTable = ({ bgColor = "" }: any) => {
         toggleProduct={toggleProduct}
         allTableData={allTableData}
         descendingAscendingOrder={descendingAscendingOrder}
+        rowShowValue={rowShowValue}
       />
-      <TableFooterArea />
+      <TableFooterArea
+        rowShowValue={rowShowValue}
+        setRowShowValue={setRowShowValue}
+      />
     </div>
   );
 };
 
 export default ValidatorTable;
-export const TableFooterArea = () => {
-  const [value, setValue] = useState("1");
+export const TableFooterArea = ({ rowShowValue, setRowShowValue }: any) => {
   return (
     <div className={style.table_footer_area}>
       <div className={style.table_footer_area_1}>
         <span>Row Per Page</span>
         <select
-          value={value}
+          value={rowShowValue}
           onChange={(e) => {
-            setValue(e.target.value);
+            setRowShowValue(e.target.value);
             console.log("select value =", e.target.value);
           }}
           className={style.select}
           // style={{ backgroundColor: "black" }}
         >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+          <option value={6}>6</option>
         </select>
       </div>
       <div className={style.page}>

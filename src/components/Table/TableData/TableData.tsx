@@ -13,18 +13,27 @@ const TableData = ({
   allTableData,
   descendingAscendingOrder,
   bgColor = "",
+  rowShowValue,
 }: any) => {
   let keys: string[] = [];
+  let keyHeaderValue: string[] = [];
   Object.keys(state.tableData.tableTitle).map((item, index) => {
     if (!state?.tableData?.tableTitle[item]?.show) {
       keys.push(item);
+    } else {
+      keyHeaderValue.push(item);
     }
   });
-  console.log(keys);
+
   return (
     <table
       className={style.table}
-      style={{ borderCollapse: "collapse", background: bgColor }}>
+      style={{
+        background: bgColor,
+
+        overflowX: "scroll",
+        width: "100%", // Set a fixed width or adjust as needed
+      }}>
       <thead>
         <tr>
           {Object.keys(state?.tableData?.tableTitle).map(
@@ -49,32 +58,21 @@ const TableData = ({
         </tr>
       </thead>
       <tbody className={style.table_body_sec}>
-        {state.tableData.data.map(
-          (data: any) => (
-            <TableBodyArea
-              data={data}
-              keys={keys}
-              key={data.id}
-              toggleProduct={toggleProduct}
-              allTableData={allTableData}
-            />
-          )
-
-          //       <td className={style.name_data}>
-          //         <p className={style.name_data_child}>
-          //           <span>{data.name}</span>
-          //           <span>{data.name}</span>
-          //         </p>
-          //       </td>
-          //       <td>{data.inputs}</td>
-          // <td>
-          //   <Badge title={data.db} bgColor="re" color="gree" />{" "}
-          // </td>
-
-          //       // {[1, 2, 3, 4, 5].map((item) => (
-          //       //   <td key={item}>{item}</td>
-          //       // ))}
-        )}
+        {state.tableData.data.slice(0, rowShowValue).map((data: any) => (
+          <TableBodyArea
+            data={data}
+            keys={keys}
+            key={data.id}
+            toggleProduct={toggleProduct}
+            allTableData={allTableData}
+            keyHeaderValue={keyHeaderValue}
+            render={(data: any) => (
+              <div className="z-50 top-1/2 left-1/2 bg-red-900">
+                <p>{data} show in ui</p>
+              </div>
+            )}
+          />
+        ))}
       </tbody>
     </table>
   );
@@ -86,7 +84,7 @@ export const TableHeaderArea = ({
   title,
   descendingAscendingOrder,
   isOrder,
-  position = "center",
+  position = "left",
   allTableData,
   state,
   toggleProduct,
@@ -96,7 +94,7 @@ export const TableHeaderArea = ({
       {isOrder && (
         <>
           {title == "Author" ? (
-            <div className={style.author}>
+            <div className={style[position]}>
               <input
                 type="checkbox"
                 checked={
@@ -133,6 +131,8 @@ export const TableBodyArea = ({
   keys,
   toggleProduct,
   allTableData,
+  keyHeaderValue,
+  render,
 }: any) => {
   return (
     <tr>
@@ -140,10 +140,17 @@ export const TableBodyArea = ({
         (item: any, index: any) =>
           !keys.includes(item) && <td key={index}>{data[item]}</td>
       )} */}
+      {keyHeaderValue.map((item: any, index: any) => {
+        return (
+          <td key={index} onClick={() => render(data[item])}>
+            {data[item]}
+          </td>
+        );
+      })}
       {/* {state?.tableData?.tableTitle["status"]?.show && (
         <Badge title="Active" bgColor="#dcfae6" color="#079455" />
       )} */}
-      {!keys.includes("author") && (
+      {/* {!keys.includes("author") && (
         <td>
           <td>
             {" "}
@@ -182,7 +189,7 @@ export const TableBodyArea = ({
       )}
       {!keys.includes("crud") && (
         <td>
-          <input type="checkbox" checked={data.ws} />
+          <input type="checkbox" checked={data.crud} onChange={e=>handleCrudChange(data)} />
         </td>
       )}
       {!keys.includes("ws") && (
@@ -195,6 +202,7 @@ export const TableBodyArea = ({
           <input type="checkbox" checked={data.inMemory} />
         </td>
       )}
+
       {!keys.includes("relation") && (
         <td>
           <span className={style.relation}>
@@ -207,6 +215,11 @@ export const TableBodyArea = ({
               />
             ))}
           </span>
+        </td>
+      )}
+      {!keys.includes("status") && (
+        <td>
+          <Badge title="active" bgColor="#dcfae6" color="#079455" />
         </td>
       )}
       {!keys.includes("action") && (
@@ -223,7 +236,7 @@ export const TableBodyArea = ({
             </button>
           </div>
         </td>
-      )}
+      )} */}
     </tr>
   );
 };
