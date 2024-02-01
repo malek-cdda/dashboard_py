@@ -3,16 +3,47 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   tableData: {
     tableTitle: {
-      author: "Author",
-      name: "Name",
-      inputs: "Inputs",
-      db: "DB",
-      crud: "Crud",
-      ws: "Ws",
-      inMemory: "In Memory",
-      relation: "Relation",
-      status: "Status",
-      action: "Action",
+      author: {
+        label: "Author",
+        show: false,
+      },
+      name: {
+        label: "Name",
+        show: true,
+      },
+
+      inputs: {
+        label: "Inputs",
+        show: true,
+      },
+      db: {
+        label: "DB",
+        show: true,
+      },
+      crud: {
+        label: "Crud",
+        show: true,
+      },
+      ws: {
+        label: "Ws",
+        show: true,
+      },
+      inMemory: {
+        label: "In Memory",
+        show: false,
+      },
+      relation: {
+        label: "Relation",
+        show: false,
+      },
+      status: {
+        label: "Status",
+        show: false,
+      },
+      action: {
+        label: "Action",
+        show: false,
+      },
     },
     data: [
       {

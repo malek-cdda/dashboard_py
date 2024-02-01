@@ -10,7 +10,7 @@
 .table th,
 .table td {
   padding: 14px;
-  text-align: center;
+  text-align: left;
 }
 
 .table tr {
@@ -67,6 +67,9 @@
   justify-content: center;
   align-items: center;
   gap: 3px;
+}
+.canter span {
+  display: flex;
 }
 .right {
   display: flex;

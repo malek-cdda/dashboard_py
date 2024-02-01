@@ -14,151 +14,67 @@ const TableData = ({
   descendingAscendingOrder,
   bgColor = "",
 }: any) => {
+  let keys: string[] = [];
+  Object.keys(state.tableData.tableTitle).map((item, index) => {
+    if (!state?.tableData?.tableTitle[item]?.show) {
+      keys.push(item);
+    }
+  });
+  console.log(keys);
   return (
     <table
       className={style.table}
       style={{ borderCollapse: "collapse", background: bgColor }}>
       <thead>
         <tr>
-          <th>
-            {" "}
-            <div className={style.author}>
-              <input
-                type="checkbox"
-                checked={
-                  toggleProduct.length === state.tableData.data.length
-                    ? true
-                    : false
-                }
-                onChange={() => allTableData("all")}
-              />{" "}
-              <span>{state?.tableData?.tableTitle?.author}</span>
-            </div>
-          </th>
-          <TableHeaderArea
-            title={state?.tableData?.tableTitle?.name}
-            descendingAscendingOrder={descendingAscendingOrder}
-            isOrder={true}
-            position="left"
-          />
-          <TableHeaderArea
-            title={state?.tableData?.tableTitle?.inputs}
-            descendingAscendingOrder={descendingAscendingOrder}
-            isOrder={false}
-            position="right"
-          />
-          <TableHeaderArea
-            title={state?.tableData?.tableTitle?.db}
-            descendingAscendingOrder={descendingAscendingOrder}
-            isOrder={true}
-          />
-          <TableHeaderArea
-            title={state?.tableData?.tableTitle?.crud}
-            descendingAscendingOrder={descendingAscendingOrder}
-            isOrder={true}
-          />
-          <TableHeaderArea
-            title={state?.tableData?.tableTitle?.ws}
-            descendingAscendingOrder={descendingAscendingOrder}
-            isOrder={true}
-          />
-          <TableHeaderArea
-            title={state?.tableData?.tableTitle?.inMemory}
-            descendingAscendingOrder={descendingAscendingOrder}
-            isOrder={true}
-          />
-          <TableHeaderArea
-            title={state?.tableData?.tableTitle?.relation}
-            descendingAscendingOrder={descendingAscendingOrder}
-            isOrder={true}
-          />
-          <TableHeaderArea
-            title={state?.tableData?.tableTitle?.status}
-            descendingAscendingOrder={descendingAscendingOrder}
-            isOrder={true}
-          />
-          <TableHeaderArea
-            title={state?.tableData?.tableTitle?.action}
-            descendingAscendingOrder={descendingAscendingOrder}
-            isOrder={true}
-          />
+          {Object.keys(state?.tableData?.tableTitle).map(
+            (item: any, index: any) => (
+              <>
+                {state?.tableData?.tableTitle[item]?.show ? (
+                  <TableHeaderArea
+                    title={state?.tableData?.tableTitle[item]?.label}
+                    descendingAscendingOrder={descendingAscendingOrder}
+                    isOrder={state?.tableData?.tableTitle[item]?.show}
+                    key={index}
+                    allTableData={allTableData}
+                    state={state}
+                    toggleProduct={toggleProduct}
+                  />
+                ) : (
+                  <></>
+                )}
+              </>
+            )
+          )}
         </tr>
       </thead>
       <tbody className={style.table_body_sec}>
-        {state.tableData.data.map((data: any) => (
-          <tr key={data.id}>
-            <td>
-              {" "}
-              <div className="flex justify-center items-center gap-2.5">
-                <input
-                  type="checkbox"
-                  checked={toggleProduct.some(
-                    (items: any) => items.id === data.id
-                  )}
-                  onChange={() => allTableData(data)}
-                />{" "}
-                <Image
-                  src={data.img}
-                  alt="arrow-down"
-                  width={20}
-                  height={20}
-                  className={style.author_img}
-                />
-              </div>
-            </td>
-            <td className={style.name_data}>
-              <p className={style.name_data_child}>
-                <span>{data.name}</span>
-                <span>{data.name}</span>
-              </p>
-            </td>
-            <td>{data.inputs}</td>
-            <td>
-              <Badge title={data.db} bgColor="re" color="gree" />{" "}
-            </td>
-            <td>
-              <input type="checkbox" checked={data.crud} />
-            </td>
-            <td>
-              <input type="checkbox" checked={data.ws} />
-            </td>
-            <td>
-              <input type="checkbox" checked={data.inMemory} />
-            </td>
-            <td>
-              <span className={style.relation}>
-                {data.relation.map((item: any, index: any) => (
-                  <Badge
-                    title={item}
-                    bgColor="#dcfae6"
-                    color="#079455"
-                    key={index}
-                  />
-                ))}
-              </span>
-            </td>
-            <td>
-              {data.status ? (
-                <Badge title="Active" bgColor="#dcfae6" color="#079455" />
-              ) : (
-                ""
-              )}
-            </td>
-            <td>
-              <div className={style.actions}>
-                <button>
-                  <FiEye className={style.action_icon} />
-                </button>
-                <button>
-                  <CiEdit className={style.action_icon} />
-                </button>
-                <button>
-                  <RiDeleteBin5Line className={style.action_icon} />
-                </button>
-              </div>
-            </td>
-          </tr>
-        ))}
+        {state.tableData.data.map(
+          (data: any) => (
+            <TableBodyArea
+              data={data}
+              keys={keys}
+              key={data.id}
+              toggleProduct={toggleProduct}
+              allTableData={allTableData}
+            />
+          )
+
+          //       <td className={style.name_data}>
+          //         <p className={style.name_data_child}>
+          //           <span>{data.name}</span>
+          //           <span>{data.name}</span>
+          //         </p>
+          //       </td>
+          //       <td>{data.inputs}</td>
+          // <td>
+          //   <Badge title={data.db} bgColor="re" color="gree" />{" "}
+          // </td>
+
+          //       // {[1, 2, 3, 4, 5].map((item) => (
+          //       //   <td key={item}>{item}</td>
+          //       // ))}
+        )}
       </tbody>
     </table>
   );
@@ -171,22 +87,143 @@ export const TableHeaderArea = ({
   descendingAscendingOrder,
   isOrder,
   position = "center",
+  allTableData,
+  state,
+  toggleProduct,
 }: any) => {
   return (
     <th>
-      <div className={style[position]}>
-        <span>{title} </span>
-        {isOrder && (
-          <span className={style.order_icon}>
-            <button onClick={() => descendingAscendingOrder("ascending")}>
-              <FaArrowDown />
-            </button>
-            <button onClick={() => descendingAscendingOrder("descending")}>
-              <FaArrowUp />
-            </button>
-          </span>
-        )}
-      </div>
+      {isOrder && (
+        <>
+          {title == "Author" ? (
+            <div className={style.author}>
+              <input
+                type="checkbox"
+                checked={
+                  toggleProduct.length === state.tableData.data.length
+                    ? true
+                    : false
+                }
+                onChange={() => allTableData("all")}
+              />{" "}
+              <span>{title}</span>
+            </div>
+          ) : (
+            <div className={style["left"]}>
+              <span>{title} </span>
+
+              <span className={style.order_icon}>
+                <button onClick={() => descendingAscendingOrder("ascending")}>
+                  <FaArrowDown />
+                </button>
+                <button onClick={() => descendingAscendingOrder("descending")}>
+                  <FaArrowUp />
+                </button>
+              </span>
+            </div>
+          )}
+        </>
+      )}
     </th>
+  );
+};
+
+export const TableBodyArea = ({
+  data,
+  keys,
+  toggleProduct,
+  allTableData,
+}: any) => {
+  return (
+    <tr>
+      {/* {Object.keys(data).map(
+        (item: any, index: any) =>
+          !keys.includes(item) && <td key={index}>{data[item]}</td>
+      )} */}
+      {/* {state?.tableData?.tableTitle["status"]?.show && (
+        <Badge title="Active" bgColor="#dcfae6" color="#079455" />
+      )} */}
+      {!keys.includes("author") && (
+        <td>
+          <td>
+            {" "}
+            <div>
+              <input
+                type="checkbox"
+                checked={toggleProduct.some(
+                  (items: any) => items?.id === data?.id
+                )}
+                onChange={() => allTableData(data)}
+              />{" "}
+              <Image
+                src={data.img}
+                alt="arrow-down"
+                width={20}
+                height={20}
+                className={style?.author_img}
+              />
+            </div>
+          </td>
+        </td>
+      )}
+      {!keys.includes("name") && (
+        <td className={style.name_data}>
+          <p className={style.name_data_child}>
+            <span>{data?.name}</span>
+            <span>{data?.name}</span>
+          </p>
+        </td>
+      )}
+      {!keys.includes("inputs") && <td>{data.inputs}</td>}
+      {!keys.includes("db") && (
+        <td>
+          <Badge title={data?.db} bgColor="re" color="gree" />{" "}
+        </td>
+      )}
+      {!keys.includes("crud") && (
+        <td>
+          <input type="checkbox" checked={data.ws} />
+        </td>
+      )}
+      {!keys.includes("ws") && (
+        <td>
+          <input type="checkbox" checked={data.ws} />
+        </td>
+      )}
+      {!keys.includes("inMemory") && (
+        <td>
+          <input type="checkbox" checked={data.inMemory} />
+        </td>
+      )}
+      {!keys.includes("relation") && (
+        <td>
+          <span className={style.relation}>
+            {data.relation.map((item: any, index: any) => (
+              <Badge
+                title={item}
+                bgColor="#dcfae6"
+                color="#079455"
+                key={index}
+              />
+            ))}
+          </span>
+        </td>
+      )}
+      {!keys.includes("action") && (
+        <td>
+          <div className={style.actions}>
+            <button>
+              <FiEye className={style.action_icon} />
+            </button>
+            <button>
+              <CiEdit className={style.action_icon} />
+            </button>
+            <button>
+              <RiDeleteBin5Line className={style.action_icon} />
+            </button>
+          </div>
+        </td>
+      )}
+    </tr>
   );
 };
