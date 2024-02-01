@@ -57,13 +57,45 @@ const initialState = {
         status: false,
         action: true,
       },
+      {
+        id: 4,
+        author: "Rafik",
+        img: "/assets/person.jpg",
+        name: "Permission",
+        inputs: 3,
+        db: "Mongodb",
+        crud: true,
+        ws: true,
+        inMemory: true,
+        relation: ["Role"],
+        status: false,
+        action: true,
+      },
+      {
+        id: 5,
+        author: "Rafik",
+        img: "/assets/person.jpg",
+        name: "Domain",
+        inputs: 3,
+        db: "Postgres",
+        crud: true,
+        ws: true,
+        inMemory: true,
+        relation: ["Role"],
+        status: false,
+        action: true,
+      },
     ],
   },
 };
 const tableSlice = createSlice({
   name: "table",
   initialState,
-  reducers: {},
+  reducers: {
+    updateTableData: (state, { payload }) => {
+      state.tableData = payload;
+    },
+  },
 });
-export const {} = tableSlice.actions;
+export const { updateTableData } = tableSlice.actions;
 export default tableSlice.reducer;

@@ -1,5 +1,5 @@
 import React from "react";
-import WidgetCard from "../Widget/Card";
+import WidgetCard from "../utils/Widget/Card";
 import { IoAnalytics } from "react-icons/io5";
 import ValidatorTable from "./ValidatorTable/ValidatorTable";
 import style from "./style.module.css";
@@ -11,23 +11,25 @@ const TableValidator = () => {
         <div className={style.data_validate_table_card}>
           <WidgetCard
             icon={<IoAnalytics />}
-            title="Total  Data Vaidation"
+            title="Total Data Validation"
             user="12"
             subTitle="Subtitle"
-            iconColor="red"
+            iconColor="#6938ef"
           />
           <WidgetCard
             icon={<IoAnalytics />}
             title="Ready to Use"
             user="12"
             subTitle="Subtitle"
+            iconColor="#0e9384 "
           />
           <WidgetCard
-            icon={<IoAnalytics />}
-            title="Data Validation with Issues"
+            title="Data Validate With Issues"
             user="12"
             subTitle="Subtitle"
-            iconColor="green"
+            icon={<IoAnalytics />}
+            iconColor="#dc6803"
+            bgColor="re"
           />
         </div>
       </div>

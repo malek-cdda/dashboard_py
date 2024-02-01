@@ -3,12 +3,14 @@ import style from "./style.module.css";
 import { useSelector } from "react-redux";
 import { FaSearch } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
-import TableData from "./TableData/TableData";
-const ValidatorTable = () => {
+import TableData from "../TableData/TableData";
+import { store } from "@/redux/store";
+import { updateTableData } from "@/redux/slice/tableValidateSlice/tableSlice";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+const ValidatorTable = ({ bgColor = "" }: any) => {
   const state: any = useSelector((state: any) => state.tableData);
-
   const [toggleProduct, setToggleProduct] = useState<any>([]);
-  const allProduct = (e: any) => {
+  const allTableData = (e: any) => {
     if (e === "all") {
       if (toggleProduct.length) {
         if (toggleProduct.length === state.tableData.data.length) {
@@ -26,14 +28,27 @@ const ValidatorTable = () => {
       setToggleProduct(result);
     }
   };
-  const descendingOrder = (e: any) => {
-    // const result = state.tableData.data.sort((a: any, b: any) =>
-    //   a.name.localeCompare(b.name)
-    // );
-    // console.log(state.tableData.data, result);
+  const descendingAscendingOrder = (e: any) => {
+    let result;
+
+    if (e === "descending") {
+      result = [...state.tableData.data].sort((a: any, b: any) =>
+        a.name.localeCompare(b.name)
+      );
+    } else if (e === "ascending") {
+      result = [...state.tableData.data].sort((a: any, b: any) =>
+        b.name.localeCompare(a.name)
+      );
+    }
+    const updateResult = { ...state.tableData.tableTitle };
+    const descendingOrder = {
+      data: result,
+      tableTitle: updateResult,
+    };
+    store.dispatch(updateTableData(descendingOrder));
   };
   return (
-    <div className={style.table}>
+    <div className={style.table} style={{ background: bgColor }}>
       {/* table title div  */}
       <div className={style.tableDataHeader}>
         <div className={style.tableDataHeader_title}>
@@ -58,31 +73,56 @@ const ValidatorTable = () => {
       <TableData
         state={state}
         toggleProduct={toggleProduct}
-        allProduct={allProduct}
-        descendingOrder={descendingOrder}
+        allTableData={allTableData}
+        descendingAscendingOrder={descendingAscendingOrder}
       />
-      <div className={style.table_footer_area}>
-        <div className={style.table_footer_area_1}>
-          <span>Row Per Page</span>
-          <select>
-            <option value="1" defaultValue={1} selected>
-              6
-            </option>
-            <option value="1">5</option>
-            <option value="1">6</option>
-            <option value="1">7</option>
-            <option value="1">8</option>
-          </select>
-        </div>
-        <div>
-          <span>
-            {" "}
-            Page 1 to 10 {"<"} 1 2 3 ... 8 9 10 {">"}{" "}
-          </span>
-        </div>
-      </div>
+      <TableFooterArea />
     </div>
   );
 };
 
 export default ValidatorTable;
+export const TableFooterArea = () => {
+  const [value, setValue] = useState("1");
+  return (
+    <div className={style.table_footer_area}>
+      <div className={style.table_footer_area_1}>
+        <span>Row Per Page</span>
+        <select
+          value={value}
+          onChange={(e) => {
+            setValue(e.target.value);
+            console.log("select value =", e.target.value);
+          }}
+          className={style.select}
+          // style={{ backgroundColor: "black" }}
+        >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <div className={style.page}>
+        <span>Pages 1 to 10</span>
+        <div className={style.pages_end}>
+          <button>
+            {" "}
+            <IoIosArrowBack />{" "}
+          </button>
+          <button className={style.pages_active_btn}>1</button>
+          <button>2</button>
+          <button>3</button>
+          <span>...</span>
+          <button>8</button>
+          <button>9</button>
+          <button>10</button>
+          <button>
+            <IoIosArrowForward />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};

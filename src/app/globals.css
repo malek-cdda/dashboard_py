@@ -11,9 +11,12 @@
   background-color: #333;
 } */
 .light {
-  background-color: white;
+  /* background-color: white; */
 }
 .dark {
+  /* background-color: #333; */
+}
+body {
   background-color: #333;
 }
 

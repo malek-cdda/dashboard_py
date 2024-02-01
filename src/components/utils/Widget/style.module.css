@@ -9,6 +9,8 @@
 .card_body {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: start;
   gap: 4px;
   line-height: 16px;
 }

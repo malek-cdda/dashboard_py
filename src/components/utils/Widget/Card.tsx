@@ -6,6 +6,7 @@ export interface cardDataType {
   user?: string | number;
   subTitle?: string;
   iconColor?: string;
+  bgColor?: string;
 }
 
 const WidgetCard = ({
@@ -14,9 +15,10 @@ const WidgetCard = ({
   user = 12,
   subTitle = "Validation",
   iconColor = "red",
+  bgColor = "",
 }: cardDataType) => {
   return (
-    <div className={style.card}>
+    <div className={style.card} style={{ background: bgColor }}>
       <div className={style.card_icon} style={{ background: iconColor }}>
         {icon}
       </div>

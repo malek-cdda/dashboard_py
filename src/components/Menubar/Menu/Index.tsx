@@ -19,7 +19,7 @@ const MenuBar = ({ children }: any) => {
     <div
       className={`${isActive ? "active wrapper  " : "wrapper   "} ${
         submenu ? "new" : ""
-      }  `}>
+      }    `}>
       <HeaderMenubar
         isActive={isActive}
         setMenuItems={setMenuItems}
@@ -55,7 +55,7 @@ const ContainerArea = ({ isActive, children }: any) => {
   return (
     <div
       className={` ${
-        isActive ? "md:ml-24 ml-80 " : "md:ml-80 ml-24"
+        isActive ? "md:ml-[84px] ml-[302px]  " : "md:ml-[302px] ml-[84px]"
       }   duration-300 ease-in-out transition-all    `}>
       {children}
     </div>
