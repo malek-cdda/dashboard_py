@@ -1,4 +1,4 @@
-import { toggleDarkmode } from "@/redux/slice/darkmodeSlice";
+import { toggleDarkmode } from "@/redux/slice/tableDataSlice";
 import { store } from "@/redux/store";
 
 import React, { useEffect, useState } from "react";

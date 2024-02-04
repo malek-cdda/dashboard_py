@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import darkmodeSlice from "./slice/darkmodeSlice";
+import darkmodeSlice from "./slice/tableDataSlice";
 import tableSlice from "./slice/tableValidateSlice/tableSlice";
 
 // Define the type for dispatching actions from the store

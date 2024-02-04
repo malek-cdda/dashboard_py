@@ -4,12 +4,13 @@ import { CiEdit } from "react-icons/ci";
 import { FiEye } from "react-icons/fi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 export const AuthorComponent = ({ toggleProduct, data, allTableData }: any) => {
+  console.log(data);
   return (
-    <div>
+    <div className={style.author_sec}>
       <input
         type="checkbox"
-        checked={toggleProduct.some((items: any) => items?.id === data?.id)}
-        onChange={() => allTableData(data)}
+        // checked={toggleProduct.some((items: any) => items?.id === data?.id)}
+        // onChange={() => allTableData(data)}
       />{" "}
       <Image
         src={data?.img}

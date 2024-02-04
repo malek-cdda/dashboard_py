@@ -89,42 +89,6 @@
   padding: 16px 14px;
   color: white;
 }
-.table_footer_area_1 {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  color: white;
-  font-size: 14px;
-}
-
-.select {
-  background-color: black;
-  display: flex;
-  align-items: center;
-  border-radius: 8px;
-  width: 80px;
-  height: 34px;
-}
-
-.page {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  color: white;
-  font-size: 14px;
-}
-.pages_end {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  color: white;
-}
-.pages_active_btn {
-  background-color: #1a1a1a;
-  color: white;
-  border-radius: 8px;
-  padding: 6px 14px;
-}
 
 @media (max-width: 1240px) {
   .tableDataHeader {
@@ -138,44 +102,3 @@
     gap: 16px;
   }
 }
-
-/* select   */
-/* 
-.select {
-  position: relative;
-}
-
-.select {
-  appearance: none;
-  -webkit-appearance: none;
-  font-size: 1.15rem;
-  padding: 0.675em 6em 0.675em 1em;
-  background-color: #fff;
-  border: 1px solid #caced1;
-  border-radius: 0.25rem;
-  color: #bd1717;
-  cursor: pointer;
-}
-
-.select::before,
-.select::after {
-  --size: 0.3rem;
-  content: "";
-  position: absolute;
-  right: 1rem;
-  pointer-events: none;
-}
-
-.select::before {
-  border-left: var(--size) solid transparent;
-  border-right: var(--size) solid transparent;
-  border-bottom: var(--size) solid black;
-  top: 40%;
-}
-
-.select::after {
-  border-left: var(--size) solid transparent;
-  border-right: var(--size) solid transparent;
-  border-top: var(--size) solid black;
-  top: 55%;
-} */

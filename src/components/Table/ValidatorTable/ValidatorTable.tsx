@@ -81,7 +81,7 @@ const ValidatorTable = ({ bgColor = "" }: any) => {
   const [tableDataValue, setTableDataValue] = useState<any>([]);
   const [page, setPage] = useState(1);
   const [limits, setLimits] = useState(3);
-  const totalPage = state?.tableData?.data?.length;
+  const totalPage = 20;
   const handlePageChange = async (index: any) => {
     if (index === "prev") {
       setPage(page <= 1 ? 1 : page - 1);
@@ -129,7 +129,6 @@ const ValidatorTable = ({ bgColor = "" }: any) => {
         </div>
       </div>
       {/* table data validate div  */}
-
       <TableData
         state={state}
         tableData={tableDataValue}
