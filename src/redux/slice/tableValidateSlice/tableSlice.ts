@@ -6,43 +6,53 @@ const initialState = {
       author: {
         label: "Author",
         show: true,
+        isOrder: false,
       },
       name: {
         label: "Name",
         show: true,
+        isOrder: true,
       },
 
       inputs: {
         label: "Inputs",
         show: true,
+        isOrder: false,
       },
       db: {
         label: "DB",
         show: true,
+        isOrder: false,
       },
       crud: {
         label: "Crud",
         show: true,
+        isOrder: false,
       },
       ws: {
         label: "Ws",
         show: true,
+        isOrder: false,
       },
       inMemory: {
         label: "In Memory",
         show: true,
+        isOrder: false,
       },
       relation: {
         label: "Relation",
         show: true,
+        isOrder: false,
       },
       status: {
         label: "Status",
         show: true,
+        isOrder: false,
       },
       action: {
         label: "Action",
         show: true,
+        isOrder: false,
       },
     },
     data: [
@@ -82,7 +92,7 @@ const initialState = {
         inputs: 3,
         db: {
           type: "badge",
-          value: "Mongodb",
+          name: "Postgres",
         },
         crud: true,
         ws: true,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./style.module.css";
 import { useSelector } from "react-redux";
 import { FaSearch } from "react-icons/fa";
@@ -77,6 +77,36 @@ const ValidatorTable = ({ bgColor = "" }: any) => {
     };
     store.dispatch(updateTableData(descendingOrder));
   };
+
+  const [tableDataValue, setTableDataValue] = useState<any>([]);
+  const [page, setPage] = useState(1);
+  const [limits, setLimits] = useState(3);
+  const totalPage = state?.tableData?.data?.length;
+  const handlePageChange = async (index: any) => {
+    if (index === "prev") {
+      setPage(page <= 1 ? 1 : page - 1);
+    } else if (index === "next") {
+      setPage(page == totalPage ? totalPage : page + 1);
+    } else if (index === "...") {
+      setPage(1);
+    } else {
+      setPage(index);
+    }
+  };
+  const handleRowShowValue = (e: any) => {
+    setLimits(Number(e) + limits);
+  };
+
+  // useEffect(() => {
+  //   let arr: any = [];
+  //   for (let i = page - 1; i < limits * page; i++) {
+  //     arr.push(state?.tableData?.data[i]);
+  //   }
+  //   setTimeout(() => {
+  //     setTableDataValue(arr);
+  //   }, 1);
+  // }, [page, limits]);
+
   return (
     <div className={style.table} style={{ background: bgColor }}>
       {/* table title div  */}
@@ -102,37 +132,32 @@ const ValidatorTable = ({ bgColor = "" }: any) => {
 
       <TableData
         state={state}
+        tableData={tableDataValue}
         toggleProduct={toggleProduct}
         allTableData={allTableData}
         descendingAscendingOrder={descendingAscendingOrder}
         updateAllToggleFunction={updateAllToggleFunction}
         handleDelete={handleDelete}
       />
-      <TableFooterArea />
+      <TableFooterArea
+        handleRowShowValue={handleRowShowValue}
+        totalPage={totalPage}
+        page={page}
+        limits={limits}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 };
 
 export default ValidatorTable;
-export const TableFooterArea = () => {
-  const [page, setPage] = useState(1);
-  const [limits, setLimits] = useState(5);
-  const totalPage = 20;
-  const handlePageChange = async (index: any) => {
-    console.log(typeof page, index == "prev");
-    if (index === "prev") {
-      setPage(page <= 1 ? 1 : page - 1);
-    } else if (index === "next") {
-      setPage(page == totalPage ? totalPage : page + 1);
-    } else if (index === "...") {
-      setPage(1);
-    } else {
-      setPage(index);
-    }
-  };
-  const handleRowShowValue = (e: any) => {
-    setLimits(Number(e) + limits);
-  };
+export const TableFooterArea = ({
+  handleRowShowValue,
+  totalPage,
+  page,
+  limits,
+  handlePageChange,
+}: any) => {
   return (
     <div className={style.table_footer_area}>
       <SelectButton handleRowShowValue={handleRowShowValue} />

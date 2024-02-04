@@ -12,10 +12,11 @@ import {
 } from "../TableComponent/TableComponents";
 const TableData = ({
   state,
+  tableData,
   toggleProduct,
   allTableData,
   descendingAscendingOrder,
-  bgColor = "",
+  bgColor = "r",
   rowShowValue,
   updateAllToggleFunction,
   handleDelete,
@@ -29,54 +30,56 @@ const TableData = ({
       keyHeaderValue.push(item);
     }
   });
-
+  console.log(tableData, "table data page ");
   return (
-    <table
-      className={style.table}
-      style={{
-        background: bgColor,
-
-        overflowX: "scroll",
-        width: "100%", // Set a fixed width or adjust as needed
-      }}>
-      <thead>
-        <tr>
-          {Object.keys(state?.tableData?.tableTitle).map(
-            (item: any, index: any) => (
-              <>
-                {state?.tableData?.tableTitle[item]?.show ? (
-                  <TableHeaderArea
-                    title={state?.tableData?.tableTitle[item]?.label}
-                    descendingAscendingOrder={descendingAscendingOrder}
-                    isOrder={state?.tableData?.tableTitle[item]?.show}
-                    key={index}
-                    allTableData={allTableData}
-                    state={state}
-                    toggleProduct={toggleProduct}
-                  />
-                ) : (
-                  <></>
-                )}
-              </>
-            )
-          )}
-        </tr>
-      </thead>
-      <tbody className={style.table_body_sec}>
-        {state.tableData.data.slice(0, rowShowValue).map((data: any) => (
-          <TableBodyArea
-            data={data}
-            keys={keys}
-            key={data.id}
-            toggleProduct={toggleProduct}
-            allTableData={allTableData}
-            keyHeaderValue={keyHeaderValue}
-            updateAllToggleFunction={updateAllToggleFunction}
-            handleDelete={handleDelete}
-          />
-        ))}
-      </tbody>
-    </table>
+    <div className={style.scrollableTableContainer}>
+      <table
+        className={style.table}
+        style={{
+          background: bgColor,
+          width: "100%",
+          overflowX: "scroll",
+        }}>
+        <thead>
+          <tr>
+            {Object.keys(state?.tableData?.tableTitle).map(
+              (item: any, index: any) => (
+                <>
+                  {state?.tableData?.tableTitle[item]?.show ? (
+                    <TableHeaderArea
+                      title={state?.tableData?.tableTitle[item]?.label}
+                      descendingAscendingOrder={descendingAscendingOrder}
+                      isShow={state?.tableData?.tableTitle[item]?.show}
+                      isOrder={state?.tableData?.tableTitle[item]?.isOrder}
+                      key={index}
+                      allTableData={allTableData}
+                      state={state}
+                      toggleProduct={toggleProduct}
+                    />
+                  ) : (
+                    <></>
+                  )}
+                </>
+              )
+            )}
+          </tr>
+        </thead>
+        <tbody className={style.table_body_sec}>
+          {state?.tableData?.data.map((data: any) => (
+            <TableBodyArea
+              data={data}
+              keys={keys}
+              key={data?.id}
+              toggleProduct={toggleProduct}
+              allTableData={allTableData}
+              keyHeaderValue={keyHeaderValue}
+              updateAllToggleFunction={updateAllToggleFunction}
+              handleDelete={handleDelete}
+            />
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
@@ -93,25 +96,25 @@ export const TableHeaderArea = ({
 }: any) => {
   return (
     <th>
-      {isOrder && (
-        <>
-          {title == "Author" ? (
-            <div className={style[position]}>
-              <input
-                type="checkbox"
-                checked={
-                  toggleProduct.length === state.tableData.data.length
-                    ? true
-                    : false
-                }
-                onChange={() => allTableData("all")}
-              />{" "}
-              <span>{title}</span>
-            </div>
-          ) : (
-            <div className={style["left"]}>
-              <span>{title} </span>
+      <>
+        {title == "Author" ? (
+          <div className={style[position]}>
+            <input
+              type="checkbox"
+              checked={
+                toggleProduct.length === state.tableData.data.length
+                  ? true
+                  : false
+              }
+              onChange={() => allTableData("all")}
+            />{" "}
+            <span>{title}</span>
+          </div>
+        ) : (
+          <div className={style["left"]}>
+            <span>{title} </span>
 
+            {isOrder && (
               <span className={style.order_icon}>
                 <button onClick={() => descendingAscendingOrder("ascending")}>
                   <FaArrowDown />
@@ -120,10 +123,10 @@ export const TableHeaderArea = ({
                   <FaArrowUp />
                 </button>
               </span>
-            </div>
-          )}
-        </>
-      )}
+            )}
+          </div>
+        )}
+      </>
     </th>
   );
 };
@@ -142,7 +145,6 @@ export const TableBodyArea = ({
     return keyHeaderValue.map((item: any, index: any) => {
       switch (data[item]?.type || data[item]) {
         case "check_img":
-          console.log("check_img", data[item]);
           return (
             <td key={index}>
               <AuthorComponent
