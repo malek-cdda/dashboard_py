@@ -6,6 +6,7 @@ interface BadgeType {
   bgColor?: string;
 }
 const Badge = ({ title, color, bgColor }: BadgeType) => {
+  console.log(title);
   return (
     <>
       {title ? (

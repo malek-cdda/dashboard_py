@@ -34,13 +34,28 @@
 .tableDataFooterArea label {
   position: relative;
   background-color: black;
+
+  height: 75%;
 }
 .search_icon {
-  top: 12px;
+  top: 15px;
   left: 14px; /* for left side */
   /* right: 5px; for right side*/
   position: absolute;
   color: #808080;
+}
+.footer_btn {
+  background-color: #1570ef;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  height: 75%;
+}
+#search {
+  padding: 19px 14px;
+  height: 100%;
 }
 
 .tableDataFooterArea #search {
@@ -81,12 +96,7 @@
   color: white;
   font-size: 14px;
 }
-/* .table_footer_area_1 > select {
-  height: 18px;
-  background-color: black !important;
-  color: red !important;
-  border-radius: 8px;
-} */
+
 .select {
   background-color: black;
   display: flex;
