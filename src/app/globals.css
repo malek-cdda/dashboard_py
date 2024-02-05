@@ -103,3 +103,12 @@ body {
   border-bottom: 8px solid #6b6b6b2a !important;
   border-right: 8px solid transparent !important;
 }
+
+/* Add this to your CSS file or style block */
+.sorted {
+  transition: transform 10s ease-in-out; /* Adjust the duration and timing function as needed */
+}
+
+span.sorted.rotate180 {
+  transform: rotate(180deg);
+}

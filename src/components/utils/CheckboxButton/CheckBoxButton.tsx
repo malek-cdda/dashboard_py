@@ -1,9 +1,21 @@
 import React from "react";
 
-const CheckBoxButton = () => {
+const CheckBoxButton = ({
+  handleSelectAllData,
+  records,
+  toggleProduct,
+}: any) => {
+  console.log(toggleProduct, records);
   return (
     <div>
-      <input type="checkbox" />
+      <input
+        type="checkbox"
+        // checked={toggle}
+        checked={toggleProduct?.some((item: any) => item.id === records.id)}
+        onChange={() => {
+          handleSelectAllData(records);
+        }}
+      />
     </div>
   );
 };

@@ -23,7 +23,7 @@ const initialState = {
       name: "Permission",
       inputs: 2,
       db: "postgres",
-      crud: false,
+      crud: true,
       ws: true,
       inMemory: true,
       relation: ["Role", "Permission", "+2"],
@@ -37,7 +37,7 @@ const initialState = {
       name: "User",
       inputs: 4,
       db: "sqlite",
-      crud: false,
+      crud: true,
       ws: true,
       inMemory: true,
       relation: ["Role", "Permission", "+2"],
@@ -66,7 +66,7 @@ const initialState = {
       name: "User",
       inputs: 4,
       db: "",
-      crud: false,
+      crud: true,
       ws: true,
       inMemory: true,
       relation: ["Permission", "+2"],
@@ -80,7 +80,7 @@ const initialState = {
       name: "User",
       inputs: 4,
       db: "mongoose",
-      crud: false,
+      crud: true,
       ws: true,
       inMemory: true,
       relation: ["Role", "+2"],
@@ -101,7 +101,7 @@ const initialState = {
       action: true,
     },
     {
-      id: 8,
+      id: 9,
       img: "/assets/person.jpg",
       name: "User",
       inputs: 4,
@@ -114,7 +114,7 @@ const initialState = {
       action: true,
     },
     {
-      id: 8,
+      id: 10,
       img: "/assets/person.jpg",
       name: "User",
       inputs: 4,
@@ -127,7 +127,7 @@ const initialState = {
       action: true,
     },
     {
-      id: 8,
+      id: 11,
       img: "/assets/person.jpg",
       name: "User",
       inputs: 4,
@@ -140,7 +140,7 @@ const initialState = {
       action: true,
     },
     {
-      id: 8,
+      id: 12,
       img: "/assets/person.jpg",
       name: "User",
       inputs: 4,
@@ -153,7 +153,7 @@ const initialState = {
       action: true,
     },
     {
-      id: 8,
+      id: 13,
       img: "/assets/person.jpg",
       name: "User",
       inputs: 4,
@@ -166,7 +166,7 @@ const initialState = {
       action: true,
     },
     {
-      id: 8,
+      id: 14,
       img: "/assets/person.jpg",
       name: "User",
       inputs: 4,
@@ -184,7 +184,9 @@ const tableSlice = createSlice({
   name: "tableData",
   initialState,
   reducers: {
-    updateTableSlice: (state, action) => {},
+    updateTableSlice: (state, { payload }) => {
+      state.data = payload;
+    },
   },
 });
 export const { updateTableSlice } = tableSlice.actions;
