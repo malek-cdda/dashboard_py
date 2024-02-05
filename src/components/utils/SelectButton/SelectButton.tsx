@@ -10,12 +10,12 @@ const SelectButton = ({ handleRowShowValue }: any) => {
             handleRowShowValue(e.target.value);
           }}
           className={style.select}>
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
-          <option value={6}>6</option>
+          <option value={3}>1</option>
+          <option value={4}>2</option>
+          <option value={5}>3</option>
+          <option value={6}>4</option>
+          <option value={7}>5</option>
+          <option value={8}>6</option>
         </select>
       </div>
     </div>

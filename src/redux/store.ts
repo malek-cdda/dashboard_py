@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import darkmodeSlice from "./slice/tableDataSlice";
+import tableDataSlice from "./slice/tableDataSlice";
 import tableSlice from "./slice/tableValidateSlice/tableSlice";
 
 // Define the type for dispatching actions from the store
@@ -9,6 +10,7 @@ export const store = configureStore({
   reducer: {
     darkmode: darkmodeSlice,
     tableData: tableSlice,
+    data: tableDataSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

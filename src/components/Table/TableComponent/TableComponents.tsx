@@ -1,8 +1,6 @@
 import Image from "next/image";
 import style from "./style.module.css";
-import { CiEdit } from "react-icons/ci";
-import { FiEye } from "react-icons/fi";
-import { RiDeleteBin5Line } from "react-icons/ri";
+
 export const AuthorComponent = ({ toggleProduct, data, allTableData }: any) => {
   console.log(data);
   return (
@@ -42,24 +40,3 @@ export const CheckboxComponent = ({
 };
 
 // action component for table data
-
-export const ActionComponent = ({ data, handleDelete }: any) => {
-  return (
-    <>
-      <div className={style.actions}>
-        <button>
-          <FiEye className={style.action_icon} />
-        </button>
-        <button>
-          <CiEdit className={style.action_icon} />
-        </button>
-        <button
-          onClick={() => {
-            handleDelete(data);
-          }}>
-          <RiDeleteBin5Line className={style.action_icon} />
-        </button>
-      </div>
-    </>
-  );
-};
