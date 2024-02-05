@@ -1,29 +1,23 @@
 "use client";
-import Table from "@/components/TableComponent/Table";
+
+import TableComponent from "@/components/TableComponent/Index";
 import { ActionComponent } from "@/components/utils/ActionComponant/ActionComponant";
 import Badge from "@/components/utils/Badge/Badge";
-import CheckBoxButton from "@/components/utils/CheckboxButton/CheckBoxButton";
-import Pagination from "@/components/utils/Pagination/Pagination";
-import SelectButton from "@/components/utils/SelectButton/SelectButton";
-import { handlePageChanges } from "@/hooks/table";
+import WidgetCard from "@/components/utils/Widget/Card";
+import { IoAnalytics } from "react-icons/io5";
+import { updateTableSlice } from "@/redux/slice/tableDataSlice";
+import { store } from "@/redux/store";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import style from "./style.module.css";
-import { store } from "@/redux/store";
-import { updateTableSlice } from "@/redux/slice/tableDataSlice";
+import { handlePageChanges } from "@/hooks/table";
 const Page = () => {
   const data = useSelector((state: any) => state?.data?.data);
-  const [page, setPage] = useState(1);
-  const [limits, setLimits] = useState(5);
-  const [search, setSearch] = useState("");
-  const [newData, setNewData] = useState([]);
+
   // selected data you can got here
   const [selectedRecords, setSelectedRecords] = useState<any>([]);
-  const handleDelete = (e: any) => {
-    const result = [...data].filter((item: any) => item.id !== e.id);
-    store.dispatch(updateTableSlice(result));
-  };
+
   const singleMultiToggle = (e: any) => {
     console.log(e);
     let result;
@@ -34,6 +28,39 @@ const Page = () => {
       return item;
     });
     store.dispatch(updateTableSlice(result));
+  };
+  // toggle product state code here
+  const [toggleProduct, setToggleProduct] = useState([]);
+  //  sorted data function code here
+  const getSortingData = (dataSort: any) => {
+    store.dispatch(updateTableSlice(dataSort));
+  };
+  // delete data function
+  const handleDelete = (e: any) => {
+    const result = [...data].filter((item: any) => item.id !== e.id);
+    store.dispatch(updateTableSlice(result));
+  };
+  const [page, setPage] = useState(1);
+  const [limits, setLimits] = useState(5);
+  const [newData, setNewData] = useState([]);
+  // for creating front end pagination and show the data
+  useEffect(() => {
+    let newDataArray: any = [];
+    for (let i = (page - 1) * limits; i < page * limits; i++) {
+      if (data[i]) {
+        newDataArray.push(data[i]);
+      }
+    }
+    setNewData(newDataArray);
+  }, [data, limits, page]);
+  const totalPage = Math.ceil(data?.length / limits);
+  // pagination function code here
+  const handlePageChange = async (pageNumber: any) => {
+    handlePageChanges(page, totalPage, pageNumber, setPage);
+  };
+  // For show the table limit data set function code here
+  const handleRowShowValue = (e: any) => {
+    setLimits(e);
   };
   const columns = [
     {
@@ -50,7 +77,7 @@ const Page = () => {
           height={1000}
           src={row.img}
           alt="person"
-          style={{ width: "40px", height: "40px", borderRadius: "50%" }}
+          style={{ width: "32px", height: "32px", borderRadius: "50%" }}
         />
       ),
     },
@@ -102,7 +129,7 @@ const Page = () => {
     },
     {
       accessor: "inMemory",
-      title: "In Memory",
+      title: "InMemory",
 
       render: (row: any) => (
         <input
@@ -119,7 +146,7 @@ const Page = () => {
       title: "Relation",
       render: (row: any) => {
         return (
-          <div>
+          <div className="flex flex-nowrap">
             {row.relation.map((item: any, index: any) => (
               <Badge
                 key={index}
@@ -148,48 +175,54 @@ const Page = () => {
       ),
     },
   ];
-  // For creating pagination i have used useEffect and useState hooks
-  useEffect(() => {
-    let newDataArray: any = [];
-    for (let i = (page - 1) * limits; i < page * limits; i++) {
-      if (data[i]) {
-        newDataArray.push(data[i]);
-      }
-    }
-    setNewData(newDataArray);
-  }, [data, limits, page]);
-  // toggle product state code here
-  const [toggleProduct, setToggleProduct] = useState([]);
-  // Find out total page here
-  const totalPage = Math.ceil(data?.length / limits);
-  // pagination function code here
-  const handlePageChange = async (pageNumber: any) => {
-    handlePageChanges(page, totalPage, pageNumber, setPage);
-  };
-  // For show the table limit data set function code here
-  const handleRowShowValue = (e: any) => {
-    setLimits(e);
-  };
 
   return (
-    <div>
-      <Table
-        columns={columns}
-        records={newData}
-        onSelectedRecords={setSelectedRecords}
-        headerShow={true}
-        showSelectBox={true}
-      />
-      <div className={style.pagination}>
-        <SelectButton handleRowShowValue={handleRowShowValue} />
-        <Pagination
-          totalPage={totalPage}
-          page={page}
-          limits={limits}
-          siblings={1}
-          handlePageChange={handlePageChange}
-        />
+    <div className="container mx-auto my-2 flex flex-col gap-5">
+      <div className={style.data_validate_table}>
+        <p className={style.general}>General Overview</p>
+        <div className={style.data_validate_table_card}>
+          <WidgetCard
+            icon={<IoAnalytics />}
+            title="Total Data Validation"
+            user="12"
+            subTitle="Subtitle"
+            iconColor="white"
+            iconBgColor="#6938ef"
+          />
+          <WidgetCard
+            icon={<IoAnalytics />}
+            title="Ready to Use"
+            user="12"
+            subTitle="Subtitle"
+            iconColor="black"
+            iconBgColor="#0e9384"
+          />
+          <WidgetCard
+            title="Data Validate With Issues"
+            user="12"
+            subTitle="Subtitle"
+            icon={<IoAnalytics />}
+            iconColor="white"
+            iconBgColor="green"
+            bgColor="re"
+          />
+        </div>
       </div>
+      <TableComponent
+        columns={columns}
+        data={data}
+        setSelectedRecords={setSelectedRecords}
+        getSortingData={getSortingData}
+        isPagination={true}
+        showSelectBox={true}
+        headerShow={true}
+        newData={newData}
+        handleRowShowValue={handleRowShowValue}
+        totalPage={totalPage}
+        page={page}
+        limits={limits}
+        handlePageChange={handlePageChange}
+      />
     </div>
   );
 };
